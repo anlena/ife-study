@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        li {
+            display: inline-block;
+            padding: 5px;
+            background-color: red;
+            margin: 5px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="" value="" id="text">
+    <button type="button" id="bt1">左侧进</button>
+    <button type="button" id="bt2">右侧进</button>
+    <button type="button" id="bt3">左侧出</button>
+    <button type="button" id="bt4">右侧出</button>
+    <ul id="ul">
+        <!--<li></li>-->
+    </ul>
+</body>
+<script>
+    var txt = document.getElementById("text");
+    var bt1 = document.getElementById("bt1");
+    var bt2 = document.getElementById("bt2");
+    var bt3 = document.getElementById("bt3");
+    var bt4 = document.getElementById("bt4");
+    var ul = document.getElementById('ul');
+
+
+
+    bt1.addEventListener('click', function() {
+        if (!isNaN(txt.value)) {
+            leftIn(txt.value);
+        }
+    });
+    bt2.addEventListener('click', function() {
+        if (!isNaN(txt.value)) {
+            rightIn(txt.value);
+        }
+    })
+
+    bt3.addEventListener('click', function() {
+        removeLeft();
+    })
+
+    bt4.addEventListener('click', function() {
+        removeRight();
+    })
+
+    function leftIn(text) {
+        var li = document.createElement("li");
+        li.innerHTML = text;
+        ul.insertBefore(li, ul.firstChild);
+        txt.value = null;
+    }
+
+    function rightIn(text) {
+        var li = document.createElement("li");
+        li.innerHTML = text;
+        ul.appendChild(li);
+        txt.value = null;
+    }
+
+    function removeLeft() {
+        var lis = document.getElementById("ul").getElementsByTagName("li");
+        alert(lis[0].innerHTML);
+        ul.removeChild(lis[0]);
+    }
+
+    function removeRight() {
+        var lis = document.getElementById("ul").getElementsByTagName("li");
+        alert(lis[lis.length - 1].innerHTML);
+        ul.removeChild(lis[lis.length - 1]);
+    }
+</script>
+
+</html>
