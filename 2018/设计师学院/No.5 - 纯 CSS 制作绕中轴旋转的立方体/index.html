@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绕中轴旋转的立方体</title>
+  <style>
+    .wrap{
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 100px auto;
+      margin-left: -100px;
+      perspective: 800px;
+      left: 50%;
+      transform-style: preserve-3d;
+      transform: rotateY(-30deg) rotate(57deg);
+      transition: all 5s;
+    }
+
+    .wrap:hover{
+      transform-origin: 50% 50%;
+      transform: rotateY(360deg)
+    }
+
+    .wrap>div{
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: blue;
+      opacity: 0.3;
+      border: 1px solid blue;
+    }
+
+    .box1{
+      transform: rotateY(-90deg) translateZ(100px);
+      background: red;
+    }
+
+    .box2{
+      transform: rotateY(90deg) translateZ(100px);
+      background: yellow;
+    }
+
+    .box3{
+      transform: rotateX(90deg) translateZ(100px);
+      background: gray;
+    }
+
+    .box4{
+      transform: rotateX(-90deg) translateZ(100px);
+      background: black;
+    }
+
+    .box5{
+      transform: translateZ(100px);
+      background: blue;
+    }
+
+    .box6{
+      transform: translateZ(-100px);
+      background: green;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+    <div class="box6"></div>
+  </div>
+</body>
+</html>
