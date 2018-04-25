@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>2016.5.20</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    	html{
+			font-size:20px !important;
+    	}
+    	html,body{
+    		background:rgba(0,0,0,.4);
+    		overflow: hidden;
+    	}
+    	
+    	*{
+    		-webkit-box-sizing: border-box;
+    		box-sizing: border-box;
+    	}
+		.eui-border-t,
+		.eui-border-b{
+			position: relative;
+		}
+		.eui-border-t:before,
+		.eui-border-b:after {
+		  width: 100%;
+		  height: 1px;
+		  background-color: #c8c7cc;
+		  display: block;
+		  content: '';
+		  position: absolute;
+		  z-index: 2;
+		  left: 0;
+		  right: auto;
+		  -webkit-transform-origin: 100% 50%;
+		  transform-origin: 100% 50%;
+		  pointer-events: none;
+		}
+		.eui-border-t:before {
+		  bottom: auto;
+		  top: 0;
+		}
+
+		.eui-border-b:after {
+		  bottom: 0;
+		  top: auto;
+		}
+
+		@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+		  .eui-border-t:before,
+		  .eui-border-b:after {
+		    -webkit-transform: scaleY(1);
+		    transform: scaleY(1);
+		  }
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+		  .eui-border-t:before,
+		  .eui-border-b:after {
+		    -webkit-transform: scaleY(0.5);
+		    transform: scaleY(0.5);
+		  }
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+		  .eui-border-t:before,
+		  .eui-border-b:after {
+		    -webkit-transform: scaleY(0.333);
+		    transform: scaleY(0.333);
+		  }
+		}
+		.eui-radius-4{
+			border-radius: 4px;
+		}
+		.eui-hover{
+			opacity: 0.8;
+		}
+    	.eui-m-layout{
+    		position: absolute;
+    		bottom:0;
+    		left:0;
+    		width:100%;
+    		height:15rem;
+    		background:#fff;
+    	}
+    	.eui-header{
+    		position: relative;
+			width: 100%;
+			text-align: center;
+			font-size: 0.8em;
+    		background:#ffffff;
+    		padding:0.2rem;
+    		height:2rem;
+    	}
+    	.eui-title{
+    		position: absolute;
+			line-height: 1.5rem;
+			left:5rem;
+			right:5rem;
+			white-space: nowrap;
+			overflow: hidden;
+			text-align: center;
+    		color:#3a3a3a;
+    	}
+    
+    	.eui-pull-left{
+    		float: left;
+    		color:#999;
+    	}
+    	.eui-pull-right{
+    		float: right;
+    		color: #3892ce;
+    	}
+    	.eui-pull-right,
+    	.eui-pull-left{
+    		line-height: 1.5rem;
+			padding: 0 0.5rem;
+    	}
+    	.eui-content{
+    		height:12.35rem;
+    		padding:0 0.25rem;
+    		overflow: hidden;
+    	}
+    	.eui-cnt-item{
+    		width:33.333333%;
+    		float: left;
+    		position: relative;
+    	}
+
+    	.mask{
+    		position: absolute;
+    		top:0;
+    		left:auto;
+    		right:auto;
+    		height:100%;
+    		opacity:0;
+    		z-index: 999;
+    		display: none;
+    		background:#000;
+    	}
+    	.mask.show{
+    		display: block;
+    	}
+    	#mask1{
+    		left:0;
+    	}
+    	#mask2{
+    		right:0;
+    	}
+    	.eui-visual{
+    		height:2.47rem;
+    		position: absolute;
+    		top:4.94rem;
+    		left:-0.25rem;
+    		right:-0.25rem;
+    		
+    	}
+    	.eui-cnt-item li{
+    		text-align: center;
+    		height:2.47rem;
+    		line-height: 2.47rem;
+    		font-size: 0.8rem;
+    		color:#3a3a3a;
+    	}
+    	.eui-cnt-item li.visual{
+    		color:#3892ce;
+    	}
+    	.show-text #y li:after{
+    		content:'年';
+    	}
+    	.show-text #m li:after{
+    		content:'月';
+    	}
+    	.show-text #d li:after{
+    		content:'日';
+    	}
+    	.show-text #d li.hide{
+    		display: none;
+    	}
+    	
+    </style>
+</head>
+<body>
+	<div class="mask" id="mask1"></div>
+	<div class="mask" id="mask2"></div>
+	<div class="eui-m-layout">
+		<div class="eui-header eui-border-t eui-border-b ">
+			<div class="eui-pull-left eui-radius-4" tapmode="eui-hover">取消</div>
+			<div class="eui-title">选择日期</div>
+			<div class="eui-pull-right eui-radius-4" tapmode="eui-hover">确定</div>
+		</div>
+		<div class="eui-content">
+			<div class="eui-cnt-item" id="y">
+				<div class="eui-visual eui-border-t eui-border-b"></div>
+				<ul>
+					
+				</ul>
+			</div>
+			<div class="eui-cnt-item" id="m">
+				<div class="eui-visual eui-border-t eui-border-b"></div>
+				<ul>
+					
+				</ul>
+			</div>
+			<div class="eui-cnt-item" id="d">
+				<div class="eui-visual eui-border-t eui-border-b"></div>
+				<ul>
+					
+				</ul>
+			</div>
+			
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+	var u = {
+		getAngle:function(x1, y1, x2, y2) {
+			return Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+		},
+		getDirectionFromAngle:function(agl) {
+			var directions = {
+				up: agl < -45 && agl > -135,
+				down: agl >= 45 && agl < 135,
+				left: agl >= 135 || agl <= -135,
+				right: agl >= -45 && agl <= 45
+			};
+			for (var key in directions) {
+				if (directions[key]) return key;
+			}
+			return null;
+		},
+		getMonthMaxDate : function(y,m){
+			var date = new Date();
+			date.setFullYear(y);
+			date.setMonth(m);
+			date.setDate(0);
+			return date.getDate();
+		},
+		go:function(view,y){
+			view.style.webkitTransform = "translate3D(0,"+y+"rem,0)";
+		}
+	};
+	
+	
+	u.init = function(opt){
+		var date = new Date(),
+			i = 0;
+			
+		this.Y = opt.y || date.getFullYear();
+		this.M = opt.m || date.getMonth()+1;
+		this.D = opt.d || date.getDate();
+		
+		
+		this.MIN = opt.min || date.getFullYear() - 10;
+		this.MAX = opt.max || date.getFullYear() + 10;
+		
+		this.index = {
+			y:0,
+			m:0,
+			d:0
+		}
+		
+		
+		
+		var showText = opt.showText || false;
+		
+		
+		var yView = $api.dom('#y ul');
+		var mView = $api.dom('#m ul');
+		var dView = $api.dom('#d ul');
+		
+		
+		var html = '';
+		showText && ($api.addCls($api.dom('.eui-content'), 'show-text'));
+		
+		
+		for(i = this.MIN;i<=this.MAX ;i++){
+			html += '<li>'+i+'</li>';
+		}
+		yView.innerHTML = html;
+		this.index.y =  (this.MAX - this.MIN) -(this.MAX - this.Y)  +  1;
+		$api.addCls($api.dom(yView,'li:nth-child('+this.index.y+')'), 'visual');
+		html = '';
+		for(i = 1;i<=12 ;i++){
+			html += '<li>'+i+'</li>';
+		}
+		mView.innerHTML = html;
+		this.index.m = this.M ;
+		$api.addCls($api.dom(mView,'li:nth-child('+this.index.m+')'), 'visual');
+		
+		var month_max_date = u.getMonthMaxDate(this.Y,this.M);
+		
+		for(;i<=31 ;i++){
+			html += '<li '+(i>month_max_date?'class=hide':'')+'>'+i+'</li>';
+		}
+		dView.innerHTML = html;
+		this.index.d = this.D ;
+		if(this.D > month_max_date){
+			this.index.d = month_max_date;
+		}
+		$api.addCls($api.dom(dView,'li:nth-child('+this.index.d+')'), 'visual');
+		html = null;
+		html = null;
+		showText = null;
+		
+		
+		this.itemH = 2.47 //rem;
+		u.go(yView,-(this.index.y-3)*this.itemH);	
+		u.go(mView,-(this.index.m-3)*this.itemH);	
+		u.go(dView,-(this.index.d-3)*this.itemH);	
+		
+		
+		u.bind();
+	}
+	
+	u.bind = function(){
+		var allView = $api.domAll('.eui-cnt-item');
+		var start = function(e){
+			var gid = this.id;
+			var mask1r = 0;
+			var mask2l = 0;
+			switch(gid){
+				case 'y':
+					mask1r = "auto";
+					mask2l = "33.33333333333332%";
+					break;
+				case 'm':
+					mask1r = "33.33333333333332%";
+					mask2l = "33.33333333333332%";
+					break;
+				case 'd':
+					mask1r = "33.33333333333332%";
+					mask2l = "auto";
+					break;
+			}
+			var maskView1 = $api.dom('#mask1');
+			var maskView2 = $api.dom('#mask2');
+			maskView1.style.right = mask1r  ;
+			maskView2.style.left = mask2l;
+			$api.addCls(maskView1, 'show');
+			$api.addCls(maskView2, 'show');
+			var et = e.touches[0];
+			u.sX = et.pageX;
+			u.sY = et.pageY;
+			u.angle = null;
+			u.goIndex = null;
+			u.moveH = 0;
+			$api.dom(this,'ul').style.webkitTransition = 'none';
+			
+			
+		}
+		
+		var move = function(e){
+			
+			var et = e.touches[0];
+			u.eX = et.pageX;
+			u.eY = et.pageY;
+			e.preventDefault();
+			if(!u.angle){
+				u.angle = u.getDirectionFromAngle(u.getAngle(u.sX,u.sY,u.eX,u.eY));
+			}
+			if(u.angle == 'up' || u.angle == 'down'){
+				
+				u.moveH = (u.eY - u.sY) / 20; 
+				u.goIndex = u.index[this.id]  - Math.round(u.moveH / u.itemH) ;
+				var preView = $api.dom(this,'ul .visual');
+				preView&&$api.removeCls(preView, 'visual');
+				var el = $api.dom(this,'ul li:nth-child('+u.goIndex+')');
+				el&&$api.addCls(el, 'visual');
+				u.go($api.dom(this,'ul'),-(u.index[this.id] - 3)*u.itemH + u.moveH);
+				
+			}
+			
+			
+		}
+		
+		var end = function(e){
+			var maskView1 = $api.dom('#mask1');
+			var maskView2 = $api.dom('#mask2');
+			$api.removeCls(maskView1, 'show');
+			$api.removeCls(maskView2, 'show');
+			e.preventDefault();
+			
+			if( u.goIndex != null ){
+				var len  = $api.domAll(this,'ul li:not(.hide)').length;
+				var el = $api.dom(this,'ul');
+				el.style.webkitTransition = '-webkit-transform .3s';
+				if(u.goIndex <=1){
+					u.goIndex = 1;
+					$api.addCls($api.dom(el,'li:nth-child('+u.goIndex+')'), 'visual');
+				}else if(u.goIndex >= len){
+					u.goIndex = len ;
+					$api.addCls($api.dom(el,'li:nth-child('+u.goIndex+')'), 'visual');
+				}
+				u.index[this.id] = u.goIndex;
+				u.go(el,-(u.goIndex - 3)*u.itemH );
+				if(this.id == 'm' || this.id == 'y'){
+					var y = $api.dom('#y ul .visual').innerHTML;
+					var m = $api.dom('#m ul .visual').innerHTML;
+					
+					var month_max_date = u.getMonthMaxDate(y,m);
+					var hideView = $api.domAll('#d ul li:nth-child(n+29)');
+					
+					for(var i=0;i<hideView.length;i++){
+						if(hideView[i].innerHTML <= month_max_date){
+							$api.removeCls(hideView[i], 'hide');
+						}else{
+							$api.addCls(hideView[i], 'hide');
+						}
+						
+					}
+					var showViewLen  = $api.domAll('#d ul li:not(.hide)').length;
+					if(u.index.d > showViewLen){
+						u.index.d = showViewLen;
+						var el = $api.dom('#d ul');
+						el.style.webkitTransition = 'transform .3s';
+						u.go(el,-(showViewLen-3)*u.itemH );
+						var preView = $api.dom(el,'ul .visual');
+						preView&&$api.removeCls(preView, 'visual');
+						$api.addCls($api.dom(el,'li:nth-child('+showViewLen+')'), 'visual');
+					}
+				}
+				
+			}
+		}
+		for(var i=0,len=allView.length;i<len;i++){
+			var view = allView[i];
+			view.addEventListener('touchstart',start,false);
+			view.addEventListener('touchmove',move,false);
+			view.addEventListener('touchend',end,false);
+			view.addEventListener('touchcancel',end,false);
+		}
+		
+		function closeFun(data){
+			if(api.pageParam.keyback){
+				api.execScript({
+	                script: "api.removeEventListener({name:'keyback'});"
+                });
+			}
+			var callbackName = api.pageParam.callbackName;
+			api.sendEvent({
+	            name:callbackName,
+	            extra:data
+            });
+			api.closeFrame();
+		}
+		$api.dom('.eui-pull-left').onclick = function(){
+			closeFun({
+				index:-1
+			});
+		}
+		$api.dom('.eui-pull-right').onclick = function(){
+			closeFun({
+				index:1,
+				y:$api.dom('#y ul .visual').innerHTML,
+				m:$api.dom('#m ul .visual').innerHTML,
+				d:$api.dom('#d ul .visual').innerHTML
+			});
+		}
+	
+	}
+
+	u.init({
+		showText:true,//是否显示年月日单位
+		y:1997, //初始年，不传默认今年
+		m:1, //初始月,不传默认本月
+		d:16 , //初始日，不传默认今天,
+		max:2016, //最大显示年份,不传默认今年加10
+		min:1997  //最小显示年份,不传默认今年减于10
+
+	});	
+	
+</script>
+</html>

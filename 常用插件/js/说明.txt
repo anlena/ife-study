@@ -1,0 +1,12 @@
+1.prefixfree.min.js
+	为了自动补全不同浏览器css3前缀样式
+
+2.HTML5shiv.js
+        让ie系列支持html5新标签
+
+3.flex.js 
+	淘宝16.01更新自适应
+
+4.flexbile.js
+	
+	简书最新自适应

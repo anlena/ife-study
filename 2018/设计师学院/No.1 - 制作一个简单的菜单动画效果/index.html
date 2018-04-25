@@ -60,13 +60,31 @@
     }
 
     .third{
-      
+      display: inline-block;
+      position: relative;
+      height: 36px;
+      line-height: 36px;
+    }
+
+    .third:before{
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0px;
+      height: 2px;
+      width: 100%;
+      background: #000;
+      transform: scale(0);
+      transition: all .3s;
+    }
+    .third:hover:before{
+      transform: scale(1);
     }
   </style>
 </head>
 <body>
   <div class="first">通过旋转实现动画效果</div><br>
-  <div class="second">通过控制宽度和位置</div>
+  <div class="second">通过控制宽度和位置</div><br>
   <div class="third">通过缩放控制效果</div>
 </body>
 </html>
