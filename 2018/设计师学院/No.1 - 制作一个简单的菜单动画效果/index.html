@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>动画效果</title>
+  <style>
+    .first{
+      position: relative;
+      margin: 0 auto;
+      height: 36px;
+      line-height: 36px;
+      display: inline-block;
+    }
+
+    /* 通过旋转实现动画效果 */
+    .first::after{
+      content: '';
+      display: block;
+      /* 开始时候下划线为100% */
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: 0px;
+      background: #000;
+      transition: all 0.3s ease-in-out;
+      /*通过transform的缩放scale来让初始时x轴为0*/
+      transform: scale3d(0,1,1);
+      /*将坐标原点移到元素的中间，以原点为中心进行缩放*/
+      transform-origin:50% 0;
+    }
+
+    div:hover::after{
+      transform: scale3d(1,1,1);
+    }
+
+    .second{
+      display: inline-block;
+      position: relative;
+      height: 36px;
+      line-height: 36px;
+    }
+
+    .second::before{
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0px;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: all .3s;
+    }
+
+    .second:hover::before{
+      width: 100%;
+      left: 0;
+      right: 0;
+    }
+
+    .third{
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="first">通过旋转实现动画效果</div><br>
+  <div class="second">通过控制宽度和位置</div>
+  <div class="third">通过缩放控制效果</div>
+</body>
+</html>
