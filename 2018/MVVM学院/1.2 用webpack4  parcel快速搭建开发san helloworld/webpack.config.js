@@ -13,9 +13,22 @@ module.exports = {
         test: /.san$/,
         use: [
           'san-loader',
-          'style-loader',
-          'css-loader'
         ]
+      },{
+        test: /.html$/,
+        loader: 'html-loader'
+      },{
+        test:/.css$/,
+        loaders:["style-loader", "css-loader"]
+      },{
+        test: /.js$/,
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader"
+        }
+      },{
+        test:/.(jpg|png|gif|eot|svg|woff|woff2|ttf)$/,
+        loader:'url-loader'
       }
     ]
   },

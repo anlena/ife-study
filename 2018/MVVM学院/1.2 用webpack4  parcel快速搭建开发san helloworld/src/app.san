@@ -1,13 +1,51 @@
 <template>
-    <div class="hello">hello {{msg}}</div>
+    <div>
+        <div class="hello">hello {{msg}}</div>
+        <input type="text" name="name" value="{= name =}" placeholder="姓名(string)" on-input="setName">
+        <input type="text" name="age" value="{= age =}" placeholder="年龄(number)" on-input="setAge">
+        <input type="text" name="bio" value="{= bio =}" placeholder="简介(string)" on-input="setBio">
+        <p>姓名：{{person.name}}</p>
+        <p>年龄：{{person.age}}</p>
+        <p>简介：{{person.bio}}</p>
+        <button on-click="remove">清空</button>
+    </div>
 </template>
 
 <script>
+    import {DataTypes} from 'san'
     export default {
         initData () {
             return {
-                msg: 'world'
+                person:{
+                    name: "",
+                    age: null,
+                    bio: ""
+                }
             };
+        },
+
+        dataTypes: {
+            person:DataTypes.shape({
+                name: DataTypes.string,
+                age: DataTypes.number,
+                bio: DataTypes.string
+            })
+        },
+
+        setName(){
+            this.data.set("person.name",this.data.get("name"))
+        },
+        setAge(){
+            this.data.set("person.age",isNaN(parseInt(this.data.get("age"))) ? undefined : parseInt(this.data.get("age")))
+        },
+        setBio(){
+            this.data.set("person.bio",this.data.get("bio"))
+        },
+
+        remove(){
+            this.data.set("name","")
+            this.data.set("age",null)
+            this.data.set("bio","")
         }
     }
 </script>
